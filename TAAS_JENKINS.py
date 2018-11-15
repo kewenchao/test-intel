@@ -22,18 +22,16 @@ def submit_session(**kwargs):
     session = kwargs['session']
     job_request = kwargs['job_request']
     try:
-        jenkins_username = kwargs['jenkins_username']
-        jenkins_password = kwargs['jenkins_password']
         jks_server = 'jf1atjenkins.ostc.intel.com'
         res = JENKINS_JOB_API.findall(kwargs['job_submit_url'])
         if res:
             jks_server = res[0]
-        crumb_url = JENKINS_CRUMB_API.format(jenkins_username, jenkins_password, jks_server)
+        crumb_url = JENKINS_CRUMB_API.format(kwargs['jenkins_username'], kwargs['jenkins_password'], jks_server)
         r = session.get(crumb_url)
         r.raise_for_status()
         session.headers.update({'Jenkins-Crumb': r.content.split(':')[1]})
     except RequestException as exc:
-        log.error('Failed to get token for %s : %s' % (jenkins_username, exc.message))
+        log.error('Failed to get token for %s : %s' % (kwargs['jenkins_username'], exc.message))
 
     try:
         r = session.post(url=kwargs['job_submit_url'], params=kwargs['job_params'], auth=kwargs['job_auth'])
@@ -91,3 +89,6 @@ def submit_session(**kwargs):
                 break
         else:
             json.dumpfile(job_request, kwargs['job_request_pname'])
+
+
+
