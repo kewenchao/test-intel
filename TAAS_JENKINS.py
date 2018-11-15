@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 JENKINS_CRUMB_API = "https://{}:\"{}\"@{}/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)"
 JENKINS_JOB_API = re.compile(r'https://([^\s]*)/job')
 
-def submit_session(**kwargs):
+def submit_sessions(**kwargs):
     session = kwargs['session']
     job_request = kwargs['job_request']
     try:
