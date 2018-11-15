@@ -19,9 +19,9 @@ JENKINS_CRUMB_API = "https://{}:\"{}\"@{}/crumbIssuer/api/xml?xpath=concat(//cru
 JENKINS_JOB_API = re.compile(r'https://([^\s]*)/job')
 
 def submit_session(**kwargs):
+    session = kwargs['session']
+    job_request = kwargs['job_request']
     try:
-        session = kwargs['session']
-        job_request = kwargs['session']
         jenkins_username = kwargs['jenkins_username']
         jenkins_password = kwargs['jenkins_password']
         jks_server = 'jf1atjenkins.ostc.intel.com'
