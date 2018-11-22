@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # !coding=utf8
 from __future__ import absolute_import
-
+import json
 import logging
 import re
-import sys
 import requests
+from requests import Session
 from requests.exceptions import RequestException
+import sys
 from time import sleep
-import json
+
 from urlparse import urljoin
 
 
@@ -19,7 +20,10 @@ JENKINS_CRUMB_API = "https://{}:\"{}\"@{}/crumbIssuer/api/xml?xpath=concat(//cru
 JENKINS_JOB_API = re.compile(r'https://([^\s]*)/job')
 
 def submit_sessions(**kwargs):
-    session = kwargs['session']
+    session = Session(
+        username=kwargs['username'],
+        password=kwargs['password'],
+        retries=kwargs['max_retries'])
     job_request = kwargs['job_request']
     job_auth = requests.auth.HTTPBasicAuth(kwargs['username'], kwargs['password'])
     job_submit_url = urljoin(
