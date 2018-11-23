@@ -22,7 +22,7 @@ def submit_sessions(**kwargs):
     print(kwargs)
     session = requests.Session()
     session.auth = (kwargs['username'], kwargs['password'])
-    job_request = json.loads(job_params['job_request_pname'])
+    job_request = json.loads(kwargs['job_request_pname'])
     print(session)
     print(job_request)
 #     session = kwargs['session']
