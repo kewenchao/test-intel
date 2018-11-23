@@ -24,7 +24,6 @@ def submit_sessions(**kwargs):
     session.auth = (kwargs['username'], kwargs['password'])
     with open(kwargs['job_request_pname'], mode='r') as f:
         job_request = json.load(f)
-    print(job_request)
     job_auth = requests.auth.HTTPBasicAuth(kwargs['username'], kwargs['password'])
     job_submit_url = urljoin(
         job_request['server_url'],
