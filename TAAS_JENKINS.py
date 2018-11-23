@@ -21,11 +21,10 @@ JENKINS_JOB_API = re.compile(r'https://([^\s]*)/job')
 
 def submit_sessions(**kwargs):
     print(kwargs)
-    session = Session(kwargs['username'],kwargs['password'],kwargs['max_retries'])
+    session = kwargs['session']
     print(session)
-    session = ()
-    print (kwargs['username'])
     job_request = kwargs['job_request']
+    print(job_request)
     job_auth = requests.auth.HTTPBasicAuth(kwargs['username'], kwargs['password'])
     job_submit_url = urljoin(
         job_request['server_url'],
