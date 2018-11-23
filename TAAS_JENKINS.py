@@ -21,7 +21,7 @@ JENKINS_JOB_API = re.compile(r'https://([^\s]*)/job')
 def submit_sessions(**kwargs):
     print(kwargs)
     session = requests.Session()
-    session.auth = (kwargs['username'], kwargs['password'])
+    session.auth = (username=kwargs['username'], password=kwargs['password']，retries=3)
     print(session)
     job_request = json.loads(kwargs['job_request_pname'])
    
