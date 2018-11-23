@@ -5,7 +5,7 @@ import json
 import logging
 import re
 import requests
-from requests import session
+from requests import Session
 from requests.exceptions import RequestException
 import sys
 from time import sleep
@@ -20,6 +20,7 @@ JENKINS_CRUMB_API = "https://{}:\"{}\"@{}/crumbIssuer/api/xml?xpath=concat(//cru
 JENKINS_JOB_API = re.compile(r'https://([^\s]*)/job')
 
 def submit_sessions(**kwargs):
+    print（11111111111)
     session = Session(kwargs['username'], kwargs['password'])
     job_request = json.loads(job_params['job_request_pname'])
     print(session)
