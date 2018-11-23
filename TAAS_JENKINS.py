@@ -26,6 +26,7 @@ def submit_sessions(**kwargs):
     job_request = kwargs['job_request']
     print(job_request)
     job_auth = requests.auth.HTTPBasicAuth(kwargs['username'], kwargs['password'])
+    print(job_auth)
     job_submit_url = urljoin(
         job_request['server_url'],
         'build' if kwargs is None else 'buildWithParameters')
