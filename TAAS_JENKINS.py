@@ -24,7 +24,9 @@ def submit_sessions(**kwargs):
     session.auth = (kwargs['username'], kwargs['password'])
     print("11111111111111111111111111")
     print(kwargs['job_request_pname'])
-    job_request = json.loads(kwargs['job_request_pname'])
+    with open(filename, mode='r') as f:
+        job_request = load(f, encoding=encoding)
+#     job_request = json.loads(kwargs['job_request_pname'])
    
     print(job_request)
 #     job_request = kwargs['job_request']
