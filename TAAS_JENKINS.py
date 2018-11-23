@@ -20,15 +20,13 @@ JENKINS_CRUMB_API = "https://{}:\"{}\"@{}/crumbIssuer/api/xml?xpath=concat(//cru
 JENKINS_JOB_API = re.compile(r'https://([^\s]*)/job')
 
 def submit_sessions(**kwargs):
-    print(kwargs)
-    session = kwargs['session']
-    print(session)
     job_request = kwargs['job_request']
     job_auth = requests.auth.HTTPBasicAuth(kwargs['username'], kwargs['password'])
     job_submit_url = urljoin(
         job_request['server_url'],
         'build' if kwargs is None else 'buildWithParameters')
     print(job_submit_url)
+    session = Session(kwargs['username'],kwargs['password'],'3')
     status = True
     message = "success"
     try:
