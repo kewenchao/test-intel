@@ -27,6 +27,7 @@ def submit_sessions(**kwargs):
         'build' if kwargs is None else 'buildWithParameters')
     print(job_submit_url)
     session = Session(kwargs['username'],kwargs['password'],'3')
+    print(session)
     status = True
     message = "success"
     try:
