@@ -24,6 +24,7 @@ def submit_sessions(**kwargs):
         username=kwargs['username'],
         password=kwargs['password'],
         retries=kwargs['max_retries'])
+    print (kwargs['username'])
     job_request = kwargs['job_request']
     job_auth = requests.auth.HTTPBasicAuth(kwargs['username'], kwargs['password'])
     job_submit_url = urljoin(
