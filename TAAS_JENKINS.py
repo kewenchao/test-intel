@@ -19,17 +19,12 @@ JENKINS_CRUMB_API = "https://{}:\"{}\"@{}/crumbIssuer/api/xml?xpath=concat(//cru
 JENKINS_JOB_API = re.compile(r'https://([^\s]*)/job')
 
 def submit_sessions(**kwargs):
-#     requests.adapters.DEFAULT_RETRIES = kwargs['max_retries']
+    requests.adapters.DEFAULT_RETRIES = kwargs['max_retries']
     session = requests.Session()
     session.auth = (kwargs['username'], kwargs['password'])
-    print("11111111111111111111111111")
-    print(kwargs['job_request_pname'])
     with open(kwargs['job_request_pname'], mode='r') as f:
         job_request = json.load(f)
-#     job_request = json.loads(kwargs['job_request_pname'])
-   
     print(job_request)
-#     job_request = kwargs['job_request']
     job_auth = requests.auth.HTTPBasicAuth(kwargs['username'], kwargs['password'])
     job_submit_url = urljoin(
         job_request['server_url'],
