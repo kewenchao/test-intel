@@ -5,6 +5,7 @@ import json
 import logging
 import re
 import requests
+from requests import session
 from requests.exceptions import RequestException
 import sys
 from time import sleep
@@ -19,7 +20,11 @@ JENKINS_CRUMB_API = "https://{}:\"{}\"@{}/crumbIssuer/api/xml?xpath=concat(//cru
 JENKINS_JOB_API = re.compile(r'https://([^\s]*)/job')
 
 def submit_sessions(**kwargs):
-    session = kwargs['session']
+    session = Session(kwargs['username'], kwargs['password'])
+    job_request = json.loads(job_params['job_request_pname'])
+    print(session)
+    print(job_request)
+#     session = kwargs['session']
     job_request = kwargs['job_request']
     job_auth = requests.auth.HTTPBasicAuth(kwargs['username'], kwargs['password'])
     job_submit_url = urljoin(
@@ -96,8 +101,6 @@ def submit_sessions(**kwargs):
                 message = 'Out of max sleep time to wait the response from jenkins and return the server url instead'
                 job_request['job_url'] = job_request['server_url']
                 break
-        else:
-            json.dumpfile(job_request, kwargs['job_request_pname'])
     job_url = job_request['job_url']
     return status, message, job_url
 
