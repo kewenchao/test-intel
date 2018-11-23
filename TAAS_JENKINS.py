@@ -20,7 +20,8 @@ JENKINS_CRUMB_API = "https://{}:\"{}\"@{}/crumbIssuer/api/xml?xpath=concat(//cru
 JENKINS_JOB_API = re.compile(r'https://([^\s]*)/job')
 
 def submit_sessions(**kwargs):
-#     session = Session(kwargs['username'],kwargs['password'],kwargs['max_retries'])
+    print(kwargs)
+    session = Session(kwargs['username'],kwargs['password'],kwargs['max_retries'])
     session = ()
     print (kwargs['username'])
     job_request = kwargs['job_request']
