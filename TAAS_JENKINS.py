@@ -32,7 +32,7 @@ def submit_sessions(**kwargs):
     message = "success"
     try:
         jks_server = 'jf1atjenkins.ostc.intel.com'
-        res = JENKINS_JOB_API.findall(kwargs['job_submit_url'])
+        res = JENKINS_JOB_API.findall(job_submit_url)
         if res:
             jks_server = res[0]
         crumb_url = JENKINS_CRUMB_API.format(kwargs['username'], kwargs['password'], jks_server)
