@@ -5,7 +5,6 @@ import json
 import logging
 import re
 import requests
-from requests import Session
 from requests.exceptions import RequestException
 import sys
 from time import sleep
@@ -21,8 +20,6 @@ JENKINS_JOB_API = re.compile(r'https://([^\s]*)/job')
 
 def submit_sessions(**kwargs):
     print(kwargs)
-    job_request = json.loadfile(kwargs['job_request_pname'])
-    print(job_request)
     session = kwargs['session']
     job_request = kwargs['job_request']
     job_auth = requests.auth.HTTPBasicAuth(kwargs['username'], kwargs['password'])
