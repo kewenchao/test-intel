@@ -25,7 +25,7 @@ def submit_sessions(**kwargs):
     print("11111111111111111111111111")
     print(kwargs['job_request_pname'])
     with open(kwargs['job_request_pname'], mode='r') as f:
-        job_request = json.load(f, encoding=encoding)
+        job_request = json.load(f)
 #     job_request = json.loads(kwargs['job_request_pname'])
    
     print(job_request)
