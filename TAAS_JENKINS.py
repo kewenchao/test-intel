@@ -8,10 +8,8 @@ import requests
 from requests.exceptions import RequestException
 import sys
 from time import sleep
-
+############
 from urlparse import urljoin
-
-####
 
 log = logging.getLogger(__name__)
 
