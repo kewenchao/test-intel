@@ -13,6 +13,7 @@ from urlparse import urljoin
 
 
 
+
 log = logging.getLogger(__name__)
 
 JENKINS_CRUMB_API = "https://{}:\"{}\"@{}/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)"
